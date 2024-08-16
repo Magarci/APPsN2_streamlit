@@ -1,5 +1,5 @@
 import streamlit as st
-from langchain import PromptTemplate
+from langchain.prompts import ChatPromptTemplate, HumanMessagePromptTemplate
 #from langchain_openai import OpenAI
 #import os
 from langchain_groq import ChatGroq
