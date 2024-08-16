@@ -35,13 +35,7 @@ template = """
 
     YOUR {dialect} RESPONSE:
 """
-"""
-#PromptTemplate variables definition
-prompt = PromptTemplate(
-    input_variables=["tone", "dialect", "draft"],
-    template=template,
-)
-"""
+
 # prompttemplate
 prompt = ChatPromptTemplate(
     messages=[
