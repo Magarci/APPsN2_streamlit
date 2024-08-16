@@ -1,7 +1,11 @@
 import streamlit as st
 from langchain import PromptTemplate
-from langchain_openai import OpenAI
-
+#from langchain_openai import OpenAI
+import os
+from dotenv import load_dotenv, find_dotenv
+_ = load_dotenv(find_dotenv())
+#os.environ["GROQ_API_KEY"] = getpass.getpass("Enter your Groq API key: ")
+groq_api_key = os.environ["GROQ_API_KEY"]
 
 template = """
     Below is a draft text that may be poorly worded.
@@ -43,10 +47,17 @@ prompt = PromptTemplate(
 
 
 #LLM and key loading function
-def load_LLM(openai_api_key):
+def load_LLM(groq_api_key):
     """Logic for loading the chain you want to use should go here."""
     # Make sure your openai_api_key is set as an environment variable
-    llm = OpenAI(temperature=.7, openai_api_key=openai_api_key)
+    llm = ChatGroq(
+    model="llama3-70b-8192",
+    temperature=.7,
+    max_tokens=None,
+    timeout=None,
+    max_retries=2,
+    # other params...
+ )
     return llm
 
 
@@ -65,14 +76,14 @@ with col2:
     st.write("Contacte commigo para construir sus proyectos de IA")
 
 
-#Input OpenAI API Key
-st.markdown("## Introduzca su clave API de OpenAI")
+#Input Groq API Key
+st.markdown("## Introduzca su clave API de ChatGroq")
 
-def get_openai_api_key():
-    input_text = st.text_input(label="OpenAI API Key ",  placeholder="Ex: sk-2twmA8tfCb8un4...", key="openai_api_key_input", type="password")
+def get_groq_api_key():
+    input_text = st.text_input(label="ChatGroq API Key ",  placeholder="Ex: sk-2twmA8tfCb8un4...", key="openai_api_key_input", type="password")
     return input_text
 
-openai_api_key = get_openai_api_key()
+groq_api_key = get_groq_api_key()
 
 
 # Input
@@ -105,13 +116,13 @@ with col2:
 st.markdown("### Su texto reescrito:")
 
 if draft_input:
-    if not openai_api_key:
-        st.warning('Please insert OpenAI API Key. \
+    if not groq_api_key:
+        st.warning('Please insert groq API Key. \
             Instructions [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key)', 
             icon="⚠️")
         st.stop()
 
-    llm = load_LLM(openai_api_key=openai_api_key)
+    llm = load_LLM(groq_api_key = groq_api_key)
 
     prompt_with_draft = prompt.format(
         tone=option_tone, 
