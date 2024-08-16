@@ -126,5 +126,5 @@ if draft_input:
     )
 
     improved_redaction = llm.invoke(prompt_with_draft)
-
-    st.write(improved_redaction["output"])
+    generated_text = improved_redaction.get("content", "No se pudo generar el texto.")
+    st.write(generated_text)
