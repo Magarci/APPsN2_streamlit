@@ -42,7 +42,7 @@ prompt = ChatPromptTemplate(
         HumanMessagePromptTemplate.from_template(template)
     ],
     input_variables={"tone", "dialect", "draft"},
-   
+
 )
 
 #LLM and key loading function
@@ -119,7 +119,7 @@ if draft_input:
 
     llm = load_LLM(groq_api_key = groq_api_key)
 
-    prompt_with_draft = prompt.format(
+    prompt_with_draft = prompt.format_prompt(
         tone=option_tone, 
         dialect=option_dialect, 
         draft=draft_input
