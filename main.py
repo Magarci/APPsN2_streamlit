@@ -2,10 +2,6 @@ import streamlit as st
 from langchain import PromptTemplate
 #from langchain_openai import OpenAI
 import os
-from dotenv import load_dotenv, find_dotenv
-_ = load_dotenv(find_dotenv())
-#os.environ["GROQ_API_KEY"] = getpass.getpass("Enter your Groq API key: ")
-groq_api_key = os.environ["GROQ_API_KEY"]
 
 template = """
     Below is a draft text that may be poorly worded.
