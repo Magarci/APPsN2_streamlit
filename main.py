@@ -1,7 +1,7 @@
 import streamlit as st
 from langchain import PromptTemplate
 #from langchain_openai import OpenAI
-import os
+#import os
 from langchain_groq import ChatGroq
 
 template = """
@@ -48,8 +48,8 @@ def load_LLM(groq_api_key):
     """Logic for loading the chain you want to use should go here."""
     # Make sure your openai_api_key is set as an environment variable
     llm = ChatGroq(
-    groq_api_key=groq_api_key, 
-    model_name="mixtral-8x7b-32768", 
+   # groq_api_key=groq_api_key, 
+    model_name="llama3-70b-8192", 
     temperature=0.7)
     return llm
 
