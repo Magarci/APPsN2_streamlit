@@ -47,14 +47,10 @@ prompt = PromptTemplate(
 def load_LLM(groq_api_key):
     """Logic for loading the chain you want to use should go here."""
     # Make sure your openai_api_key is set as an environment variable
-    llm = ChatGroq(
-    model="llama3-70b-8192",
-    temperature=.7,
-    max_tokens=None,
-    timeout=None,
-    max_retries=2,
-    # other params...
- )
+    llm = llm = ChatGroq(
+    groq_api_key=groq_api_key, 
+    model_name="mixtral-8x7b-32768", 
+    temperature=0.7)
     return llm
 
 
