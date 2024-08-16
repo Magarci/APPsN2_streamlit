@@ -126,4 +126,5 @@ if draft_input:
     )
 
     improved_redaction = llm.invoke(prompt_with_draft)
-    st.write(improved_redaction)
+    improved_redaction_content = improved_redaction.content
+    st.write(improved_redaction_content)
