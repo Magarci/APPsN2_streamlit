@@ -2,6 +2,7 @@ import streamlit as st
 from langchain import PromptTemplate
 #from langchain_openai import OpenAI
 import os
+from langchain_groq import ChatGroq
 
 template = """
     Below is a draft text that may be poorly worded.
