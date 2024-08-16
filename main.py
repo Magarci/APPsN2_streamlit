@@ -51,22 +51,22 @@ def load_LLM(openai_api_key):
 
 
 #Page title and header
-st.set_page_config(page_title="Re-write your text")
-st.header("Re-write your text")
+st.set_page_config(page_title="Reescriba su texto")
+st.header("Reescriba su texto")
 
 
 #Intro: instructions
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown("Re-write your text in different styles.")
+    st.markdown("Reescribe tu texto en diferentes estilos.")
 
 with col2:
-    st.write("Contact with [AI Accelera](https://aiaccelera.com) to build your AI Projects")
+    st.write("Contacte commigo para construir sus proyectos de IA")
 
 
 #Input OpenAI API Key
-st.markdown("## Enter Your OpenAI API Key")
+st.markdown("## Introduzca su clave API de OpenAI")
 
 def get_openai_api_key():
     input_text = st.text_input(label="OpenAI API Key ",  placeholder="Ex: sk-2twmA8tfCb8un4...", key="openai_api_key_input", type="password")
@@ -76,7 +76,7 @@ openai_api_key = get_openai_api_key()
 
 
 # Input
-st.markdown("## Enter the text you want to re-write")
+st.markdown("## Introduzca el texto que desea reescribir")
 
 def get_draft():
     draft_text = st.text_area(label="Text", label_visibility='collapsed', placeholder="Your Text...", key="draft_input")
@@ -85,24 +85,24 @@ def get_draft():
 draft_input = get_draft()
 
 if len(draft_input.split(" ")) > 700:
-    st.write("Please enter a shorter text. The maximum length is 700 words.")
+    st.write("Por favor, introduzca un texto más corto. La longitud máxima es de 700 palabras.")
     st.stop()
 
 # Prompt template tunning options
 col1, col2 = st.columns(2)
 with col1:
     option_tone = st.selectbox(
-        'Which tone would you like your redaction to have?',
+        '¿Qué tono quiere que tenga su redacción?',
         ('Formal', 'Informal'))
     
 with col2:
     option_dialect = st.selectbox(
-        'Which English Dialect would you like?',
+        '¿Qué dialecto inglés le gustaría?',
         ('American', 'British'))
     
     
 # Output
-st.markdown("### Your Re-written text:")
+st.markdown("### Su texto reescrito:")
 
 if draft_input:
     if not openai_api_key:
