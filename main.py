@@ -35,13 +35,21 @@ template = """
 
     YOUR {dialect} RESPONSE:
 """
-
+"""
 #PromptTemplate variables definition
 prompt = PromptTemplate(
     input_variables=["tone", "dialect", "draft"],
     template=template,
 )
-
+"""
+# prompttemplate
+prompt = ChatPromptTemplate(
+    messages=[
+        HumanMessagePromptTemplate.from_template(template)
+    ],
+    input_variables={"tone", "dialect", "draft"},
+   
+)
 
 #LLM and key loading function
 def load_LLM(groq_api_key):
@@ -123,6 +131,6 @@ if draft_input:
         draft=draft_input
     )
 
-    improved_redaction = llm(prompt_with_draft)
+    improved_redaction = llm.invoke(prompt_with_draft)
 
     st.write(improved_redaction)
